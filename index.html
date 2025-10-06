@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Form Pendaftaran Mahasiswa</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Form Pendaftaran Mahasiswa</h1>
+
+    <!-- Ubah form jadi PHP POST -->
+    <form id="regForm" action="simpan.php" method="post" enctype="multipart/form-data" novalidate>
+      <nav class="steps">
+        <button type="button" class="step-btn active" data-step="1">1. Data Pribadi</button>
+        <button type="button" class="step-btn" data-step="2">2. Data Keluarga</button>
+        <button type="button" class="step-btn" data-step="3">3. Pendidikan & Lampiran</button>
+      </nav>
+
+      <!-- STEP 1 -->
+      <section class="step" data-step="1">
+        <h2>Data Pribadi</h2>
+        <div class="grid">
+          <label>Nama lengkap (sesuai ijazah/KTP)
+            <input name="nama" required>
+          </label>
+          <label>Tempat, tanggal lahir
+            <input name="tempat_lahir" placeholder="Kota" required>
+            <input name="tanggal_lahir" type="date" required>
+          </label>
+          <label>Jenis kelamin
+            <select name="jenis_kelamin" required>
+              <option value="">Pilih...</option>
+              <option>Laki-laki</option>
+              <option>Perempuan</option>
+              <option>Lainnya</option>
+            </select>
+          </label>
+          <label>Nomor KTP/NIK
+            <input name="nik" inputmode="numeric" maxlength="20" required>
+          </label>
+          <label>Agama
+            <input name="agama" required>
+          </label>
+          <label>Alamat lengkap
+            <textarea name="alamat" rows="3" required></textarea>
+          </label>
+          <label>Nomor telepon/HP
+            <input name="telp" inputmode="tel" required>
+          </label>
+          <label>Email
+            <input name="email" type="email" required>
+          </label>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="step" data-step="2" hidden>
+        <h2>Data Keluarga</h2>
+        <div class="grid">
+          <label>Nama ayah
+            <input name="ayah" required>
+          </label>
+          <label>Nama ibu
+            <input name="ibu" required>
+          </label>
+          <label>Pekerjaan orang tua
+            <input name="pekerjaan_orangtua">
+          </label>
+          <label>Pendidikan terakhir orang tua
+            <input name="pendidikan_orangtua">
+          </label>
+          <label>Alamat orang tua/wali
+            <textarea name="alamat_orangtua" rows="2"></textarea>
+          </label>
+          <label>Nomor telepon/HP orang tua/wali
+            <input name="telp_orangtua" inputmode="tel">
+          </label>
+          <label>Pendapatan orang tua (opsional)
+            <input name="pendapatan_orangtua" inputmode="numeric" placeholder="mis. 3000000">
+          </label>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="step" data-step="3" hidden>
+        <h2>Data Pendidikan, Program Studi & Berkas</h2>
+        <div class="grid">
+          <label>Asal sekolah
+            <input name="asal_sekolah" required>
+          </label>
+          <label>Alamat sekolah
+            <input name="alamat_sekolah">
+          </label>
+          <label>Jurusan di sekolah
+            <input name="jurusan_sekolah">
+          </label>
+          <label>Tahun lulus
+            <input name="tahun_lulus" type="number" min="1900" max="2099">
+          </label>
+          <label>Nomor ijazah / NISN
+            <input name="no_ijazah">
+          </label>
+          <label>Pilihan 1: Program studi utama
+            <input name="pilihan1" required>
+          </label>
+          <label>Pilihan 2: Alternatif (jika ada)
+            <input name="pilihan2">
+          </label>
+          <label>Jalur masuk
+            <select name="jalur_masuk">
+              <option value="">Pilih...</option>
+              <option>SNBT</option>
+              <option>Mandiri</option>
+              <option>Beasiswa</option>
+              <option>PMDK</option>
+              <option>Lainnya</option>
+            </select>
+          </label>
+          <label>Pas foto terbaru
+            <input name="foto" type="file" accept="image/*">
+          </label>
+          <label>Scan KTP / Kartu pelajar
+            <input name="scan_ktp" type="file" accept="image/*,application/pdf">
+          </label>
+          <label>Scan ijazah / SKL
+            <input name="scan_ijazah" type="file" accept="image/*,application/pdf">
+          </label>
+          <label>Nilai rapor (opsional)
+            <input name="nilai_rapor" type="file" accept="application/pdf,image/*">
+          </label>
+          <label>Sertifikat prestasi (jika ada)
+            <input name="sertifikat" type="file" accept="application/pdf,image/*" multiple>
+          </label>
+        </div>
+
+        <div class="declaration">
+          <h3>Pernyataan & Tanda Tangan</h3>
+          <p>Dengan ini saya menyatakan bahwa semua data yang diberikan adalah benar.</p>
+          <label class="full">Nama (tanda tangan digital)
+            <input name="ttdName" id="ttdName" placeholder="Ketik nama sebagai tanda tangan" required>
+          </label>
+          <div class="sig-wrap">
+            <canvas id="signature" width="600" height="150"></canvas>
+            <div class="sig-controls">
+              <button type="button" id="clearSig">Bersihkan</button>
+              <small>Gambar tanda tangan di area di atas atau ketik nama.</small>
+            </div>
+          </div>
+          <label class="checkbox"><input type="checkbox" name="agree" id="agree" required> Saya menyatakan data yang saya isi adalah benar.</label>
+        </div>
+      </section>
+
+      <!-- NAV BUTTONS -->
+      <div class="form-actions">
+        <button type="button" id="prevBtn">Sebelumnya</button>
+        <button type="button" id="nextBtn">Selanjutnya</button>
+        <button type="submit" id="submitBtn" hidden>Kirim</button>
+      </div>
+    </form>
+
+    <aside class="preview" aria-live="polite">
+      <h3>Preview singkat</h3>
+      <div id="previewArea">Belum ada data yang diisi.</div>
+    </aside>
+  </main>
+
+  <footer class="credit">© 2025 Form Pendaftaran Mahasiswa</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

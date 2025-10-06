@@ -1,0 +1,117 @@
+/* Background utama */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+/* Container form */
+.container {
+  max-width: 750px;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Judul */
+h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #ffeb3b;
+}
+
+h2 {
+  color: #00e5ff;
+  font-size: 22px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #00e5ff;
+  padding-bottom: 5px;
+}
+
+/* Label & input */
+label {
+  display: block;
+  margin: 12px 0;
+  font-weight: 500;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 10px #00e5ff;
+}
+
+/* Tombol */
+button {
+  background: linear-gradient(45deg, #ff4081, #f50057);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Kanvas tanda tangan */
+canvas {
+  width: 100%;
+  height: 200px;
+  border: 2px dashed #00e5ff;
+  border-radius: 10px;
+  background: #fff; /* Latar belakang putih */
+  cursor: crosshair;
+  margin-top: 10px;
+}
+
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 64, 129, 0.6);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Step form */
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+  animation: slideIn 0.5s ease;
+}
+
+/* Animasi */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
